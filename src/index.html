@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LD Game</title>
+    <link rel="stylesheet" href="./css/game.css">
+</head>
+<body>
+    <div class="game-background">
+        <div class="game-container">
+            <div class="start-overlay">
+                <a class="start-button" href="javascript:"></a>
+            </div>
+            <div class="game-content">
+                <div data-count="3" class="game-countdown"></div>
+                <video muted class="game-video">
+                    <source src="video/city.mp4" type="video/mp4">
+                    <source src="video/city.ogv" type="video/ogg">
+                    <source src="video/city.webm" type="video/webm">
+                </video>
+                <div class="game-pleasures">
+                    <div class="game-pleasure-lemonade"></div>
+                    <div class="game-pleasure-coffee"></div>
+                    <div class="game-pleasure-dinner"></div>
+                    <div class="game-pleasure-bicycle"></div>
+                    <div class="game-pleasure-pizza"></div>
+                    <div class="game-pleasure-slippers"></div>
+                    <div class="game-pleasure-film"></div>
+                    <div class="game-pleasure-bbq"></div>
+                    <div class="game-pleasure-tickets"></div>
+                    <div class="game-pleasure-radio"></div>
+                    <div class="game-pleasure-hiking"></div>
+                    <div class="game-pleasure-bowling"></div>
+                </div>
+                <div class="game-interior">
+                    <div class="interior-board">
+                        <div class="board-lemonade"></div>
+                        <div class="board-coffee"></div>
+                        <div class="board-dinner"></div>
+                        <div class="board-bicycle"></div>
+                        <div class="board-pizza"></div>
+                        <div class="board-slippers"></div>
+                        <div class="board-film"></div>
+                        <div class="board-bbq"></div>
+                        <div class="board-tickets"></div>
+                        <div class="board-radio"></div>
+                        <div class="board-hiking"></div>
+                        <div class="board-bowling"></div>
+                    </div>
+                    <div class="interior-status-board">
+                        <div class="interior-status-1"></div>
+                        <div class="interior-status-2"></div>
+                        <div class="interior-status-3"></div>
+                        <div class="interior-status-4"></div>
+                    </div>
+                    <div class="interior-status-text"></div>
+                </div>
+                <div class="game-panel">
+                    <div class="game-panel-item">
+                        Радость:
+                        <div class="game-panel-box box-pleasure"></div>
+                    </div>
+                    <div class="game-panel-countdown">
+                        Время:
+                        <div data-time="60" class="game-panel-box box-timer">060</div>
+                    </div>
+                </div>
+            </div>
+            <div class="game-result hide">
+                <div class="result-popup result-popup-0">
+                    <div class="result-content">
+                        <div class="result-pic">
+                            <img src="img/game/result/0.png" alt="">
+                        </div>
+                        <div class="result-stars">
+                            <img src="img/game/stars/0.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="result-text">
+                        <h2>Бывает :(</h2>
+                        <p class="shown">Ты не собрал ни одной радости<br>
+                            Попробуй еще раз и все получится.</p>
+                    </div>
+                    <div class="result-buttons">
+                        <a href="#">К карте игры</a>
+                        <a class="game-repeat" href="#">Играть еще раз</a>
+                    </div>
+                </div>
+                <div class="result-popup result-popup-some">
+                    <div class="result-count"></div>
+                    <div class="result-title"></div>
+                    <div class="result-content">
+                        <div class="result-pic">
+                            <img src="" alt="">
+                        </div>
+                        <div class="result-stars">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="result-text">
+                        <h2>Поздравляем</h2>
+                        <p class="result-new">Ты получаешь 5 балов на счет<br />
+                            и становишься участником <br />
+                            розыгрыша суперпризов!</p>
+                        <p class="result-repeat">
+                            Ты уже стал участником<br />
+                            розыгрыша суперпризов!<br />
+                            Ожидай результатов 01.12.2016
+                        </p>
+                    </div>
+                    <div class="result-buttons">
+                        <a href="#">К карте игры</a>
+                        <a class="game-repeat" href="#">Играть еще раз</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-dummy">
+            <h2>УПС!</h2>
+            <p>Мобильная версия сайта не поддерживает игру.<br />На компьютере у тебя обязательно все получится</p>
+        </div>
+
+    </div>
+
+    <script src="./js/game/app.js"></script>
+</body>
+</html>

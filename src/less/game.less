@@ -1,0 +1,508 @@
+@import "fonts";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Franklin Gothic Demi Cond", "FranklinGothicDemiCond", sans-serif;
+}
+
+.game-background {
+  width: 100%;
+  min-width: 1170px;
+  background: url("../img/game/game_bg.jpg") center no-repeat;
+  height: 747px;
+  position: relative;
+}
+
+.game-container {
+  display: none;
+}
+
+.start-overlay,
+.game-content,
+.game-result {
+  width: 1170px;
+  height: 670px;
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1.4s;
+
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.start-overlay {
+  z-index: 2;
+  background: url("../img/game/start_bg.jpg") center no-repeat;
+}
+
+.start-button {
+  background: url("../img/game/start_btn.png") center no-repeat;
+  width: image-width("../img/game/start_btn.png");
+  height: image-height("../img/game/start_btn.png");
+  position: absolute;
+  bottom: 45px;
+  right: 5px;
+
+  &:hover {
+    background: url("../img/game/start_btn_hover.png") center no-repeat;
+  }
+}
+
+.game-content {
+  overflow: hidden;
+  .game-countdown {
+    text-align: center;
+    font-size: 112px;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    color: black;
+  }
+  video {
+    position: relative;
+    top: -170px;
+    z-index: -1;
+  }
+
+  .game-interior {
+    background: url('../img/game/car.png') center no-repeat;
+    width: 1170px;
+    height: 411px;
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+  }
+
+  .game-panel {
+    background: url('../img/game/panel.jpg') center no-repeat;
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: white;
+    line-height: 70px;
+    font-family: "Franklin Gothic Book", "FranklinGothicBook", sans-serif;
+    > div {
+      position: absolute;
+      top: 0;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .game-panel-item {
+      left: 265px;
+    }
+
+    .game-panel-countdown {
+      left: 820px;
+    }
+
+    .game-panel-box {
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+      background: rgba(70, 70, 70, .5);
+      text-align: center;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 10px;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 10px;
+    }
+
+    .box-pleasure {
+      width: 290px;
+      font-size: 24px;
+    }
+
+    .box-timer {
+      font-size: 32px;
+    }
+  }
+}
+
+.game-pleasures {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  > .animated-pleasure-left {
+    visibility: visible;
+    top: 160px;
+    left: 325px;
+    transform: scale(1.6) translate(-180px, 20px);
+  }
+
+  > .animated-pleasure-right {
+    visibility: visible;
+    right: 325px;
+    transform: scale(1.6) translate(180px, 10px);
+  }
+
+  .hide {
+    display: none;
+  }
+}
+
+@pleasures: lemonade, coffee, dinner, bicycle, pizza, slippers, film, bbq, tickets, radio, hiking, bowling;
+
+.pleasures-loop(@pleasures, @index) when (@index > 0) {
+  .pleasures-loop(@pleasures, (@index - 1));
+
+  @name: extract(@pleasures, @index);
+
+  .game-pleasure-@{name} {
+    background: url("../img/game/items/@{name}.png") center no-repeat;
+    width: image-width("../img/game/items/@{name}.png");
+    height: image-height("../img/game/items/@{name}.png");
+    position: absolute;
+    top: 150px;
+    visibility: hidden;
+    transform: scale(0.7);
+    transition: transform 4s;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .board-@{name} {
+    background: url("../img/game/board/@{name}.png") center no-repeat;
+    width: image-width("../img/game/board/@{name}.png");
+    height: image-height("../img/game/board/@{name}.png");
+    position: absolute;
+    z-index: 5;
+    display: none;
+
+    &:after {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
+      position: absolute;
+    }
+
+    &.shown {
+      display: block;
+    }
+  }
+}
+
+.pleasures-loop(@pleasures, length(@pleasures));
+
+.board-lemonade {
+  top: 285px;
+  left: 333px;
+
+  &:after {
+    top: -11px;
+    left: 32px;
+  }
+}
+
+.board-coffee {
+  top: 241px;
+  left: 307px;
+
+  &:after {
+    top: 16px;
+    left: 44px;
+  }
+}
+
+.board-dinner {
+  top: 199px;
+  left: 323px;
+
+  &:after {
+    top: 38px;
+    left: 37px;
+  }
+}
+
+.board-bicycle {
+  top: 192px;
+  left: 376px;
+
+  &:after {
+    top: 43px;
+    left: 5px;
+  }
+}
+
+.board-pizza {
+  top: 232px;
+  left: 410px;
+
+  &:after {
+    top: 19px;
+    left: -14px;
+  }
+}
+
+.board-radio {
+  top: 274px;
+  left: 393px;
+
+  &:after {
+    top: -3px;
+    left: -5px;
+  }
+}
+
+.board-slippers {
+  top: 281px;
+  left: 516px;
+
+  &:after {
+    top: -12px;
+    left: 38px;
+  }
+}
+
+.board-film {
+  top: 235px;
+  left: 494px;
+
+  &:after {
+    top: 17px;
+    left: 45px;
+  }
+}
+
+.board-bbq {
+  top: 188px;
+  left: 509px;
+
+  &:after {
+    top: 42px;
+    left: 39px;
+  }
+}
+
+.board-tickets {
+  top: 188px;
+  left: 572px;
+
+  &:after {
+    top: 40px;
+    left: -1px;
+  }
+}
+
+.board-hiking {
+  top: 226px;
+  left: 597px;
+
+  &:after {
+    top: 19px;
+    left: -12px;
+  }
+}
+
+.board-bowling {
+  top: 269px;
+  left: 581px;
+
+  &:after {
+    top: -4px;
+    left: -4px;
+  }
+}
+
+.interior-status-board {
+  position: absolute;
+  right: 150px;
+  top: 137px;
+  width: 205px;
+}
+
+.status-loop(@index) when (@index > 0) {
+  .status-loop((@index - 1));
+
+  .interior-status-@{index} {
+    background: url("../img/game/score/@{index}.png") center no-repeat;
+    width: image-width("../img/game/score/@{index}.png");
+    height: image-height("../img/game/score/@{index}.png");
+    position: absolute;
+    z-index: 5;
+    display: none;
+
+    &.shown {
+      display: block;
+    }
+  }
+}
+
+.status-loop(4);
+
+.interior-status-1 {
+  left: -2px;
+}
+
+.interior-status-2 {
+  top: 6px;
+  left: 40px;
+}
+
+.interior-status-3 {
+  top: 11px;
+  left: 82px;
+}
+
+.interior-status-4 {
+  top: 16px;
+  left: 124px;
+}
+
+.interior-status-text {
+  color: white;
+  position: absolute;
+  text-transform: uppercase;
+  right: 195px;
+  top: 203px;
+  width: 170px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 10px;
+  transform: rotate(8deg) translate3d(0, 0, 0);
+  font-family: "Franklin Gothic Heavy", "FranklinGothicBook", sans-serif;
+}
+
+.game-result {
+  background: rgba(0,0,0,0.5);
+  z-index: 20;
+}
+
+.result-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid white;
+  width: 510px;
+  height: 465px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+
+  &.shown {
+    display: block;
+  }
+}
+
+.result-popup-0 {
+  .result-pic {
+    margin-top: 50px;
+  }
+}
+
+.result-popup-some {
+  .result-pic {
+    margin-top: 10px;
+  }
+}
+
+.result-count {
+  margin-top: 30px;
+  line-height: 25px;
+}
+
+.result-title {
+  font-size: 32px;
+}
+
+.result-stars {
+  margin-top: 20px;
+}
+
+.result-text {
+  position: absolute;
+  bottom: 0;
+  height: 135px;
+  border-top: 2px solid white;
+  width: 100%;
+  background: rgba(32, 48, 127, .38);
+
+  h2 {
+    margin: 5px 0 0;
+    font-size: 45px;
+  }
+  p {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+.result-popup-some {
+  .result-text {
+    p {
+      display: none;
+
+      &.shown {
+        display: block;
+      }
+    }
+  }
+}
+
+.result-buttons {
+  position: absolute;
+  width: 100%;
+  bottom: -57px;
+
+  a {
+    display: inline-block;
+    background: url('../img/game/button_bg.jpg') center center no-repeat;
+    width: image-width('../img/game/button_bg.jpg');
+    height: image-height('../img/game/button_bg.jpg');
+    line-height: image-height('../img/game/button_bg.jpg');
+    color: #7d7d7d;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 15px;
+    font-family: "Franklin Gothic Book", "FranklinGothicBook", sans-serif;
+    text-shadow: 1px 1px 0 #777;
+
+    &:hover {
+      color: #20307f;
+    }
+
+    &:active {
+      color: white;
+      background: url('../img/game/button_bg_active.jpg') center center no-repeat;
+    }
+  }
+}
+
+.game-dummy {
+  .result-popup;
+  width: 80%;
+  max-width: 510px;
+  display: block;
+  height: auto;
+}
+
+@media(min-width: 1170px) {
+  .game-container {
+    display: block;
+  }
+
+  .game-dummy {
+    display: none;
+  }
+}
