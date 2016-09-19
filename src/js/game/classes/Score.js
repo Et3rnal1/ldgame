@@ -38,6 +38,8 @@ export default class Score {
     showResult() {
         this.resultContainer.classList.remove('hide');
 
+        this.sendResult();
+
         if (this.calculateStatus() > 0) {
             let popup = this.resultContainer.querySelector('.result-popup-some');
             popup.classList.add('shown');
@@ -81,5 +83,21 @@ export default class Score {
         this.resultContainer.querySelector('.result-new').classList.remove('shown');
         this.resultContainer.querySelector('.result-popup-0').classList.remove('shown');
         this.resultContainer.querySelector('.result-popup-some').classList.remove('shown');
+    }
+
+    sendResult() {
+        let data = new FormData;
+        data.append('count', this.collectedItems.length);
+
+        const opts = {
+            method: 'POST',
+            credentials: 'include',
+            body: data,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        };
+
+        return fetch('/activity/real_one/complete_car_game', opts);
     }
 }

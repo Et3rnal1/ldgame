@@ -4,6 +4,7 @@ import gulp from 'gulp';
 import Browserify from 'browserify';
 import babelify from 'babelify';
 import stream from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 
@@ -28,6 +29,8 @@ gulp.task('js', () =>
             $.util.log(e)
         )
         .pipe(stream('app.js'))
+        .pipe(buffer())
+        .pipe($.uglify())
         .pipe(gulp.dest('dist/js/game'))
 );
 

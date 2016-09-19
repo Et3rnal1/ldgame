@@ -115,8 +115,6 @@ export default class Game {
         }
     }
 
-
-
     finish() {
         return new Promise(() => this.score.showResult());
     }
